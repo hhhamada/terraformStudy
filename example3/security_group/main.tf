@@ -1,7 +1,7 @@
 variable "name" {}
 variable "vpc_id" {}
 variable "port" {}
-variable "cidr_block" {
+variable "cidr_blocks" {
     type = list(string)
 }
 
@@ -15,7 +15,7 @@ resource "aws_security_group_rule" "ingress" {
     from_port         = var.port
     to_port           = var.port
     protocol          = "tcp"
-    cidr_block        = var.cidr_block
+    cidr_blocks       = var.cidr_blocks
     security_group_id = aws_security_group.default.id
 }
 
@@ -24,7 +24,7 @@ resource "aws_security_group_rule" "egress" {
     from_port         = "0"
     to_port           = "0"
     protocol          = "-1"
-    cidr_block        = ["0.0.0.0/0"]
+    cidr_blocks       = ["0.0.0.0/0"]
     security_group_id = aws_security_group.default.id
 }
 
