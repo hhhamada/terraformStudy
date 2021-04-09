@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "alb_log" {
-    bucket = "alb-log-terraformStudy-hamada"
+    bucket = "alb-log-terraformstudy-hamada-2347434"
     
     force_destroy = true
     
@@ -21,11 +21,14 @@ data "aws_iam_policy_document" "alb_log" {
     statement {
         effect    = "Allow"
         actions   = ["s3:PutObject"]
-        resources = ["awn:aws:s3:::${aws_s3_bucket.alb_log.id}/*"]
+        resources = [
+            "arn:aws:s3:::${aws_s3_bucket.alb_log.id}",
+            "arn:aws:s3:::${aws_s3_bucket.alb_log.id}/*"
+        ]
         
         principals {
             type        = "AWS"
-            identifiers = ["433702354322"]
+            identifiers = ["582318560864"]
         }
     }
 }
